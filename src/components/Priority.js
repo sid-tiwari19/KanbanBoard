@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import AddIcon from "@mui/icons-material/Add";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import kobanContext from "../context/KobanContext";
 
 export const Priority = ({
@@ -39,11 +40,19 @@ export const Priority = ({
     <div className="bucket">
       {ans.map((stat, index) => (
         <div key={index} className="col">
-          {priorityIcons[index]}
-          <span>
-            {priority[index]}
-            <span className="count">{stat.length}</span>
-          </span>
+          <div className="plus-ico">
+            <div>
+              {priorityIcons[index]}
+              <span>
+                {priority[index]}
+                <span className="count">{stat.length}</span>
+              </span>
+            </div>
+            <div>
+              <AddIcon sx={{ fontSize: "20px" }} />
+              <MoreHorizIcon sx={{ fontSize: "20px" }} />
+            </div>
+          </div>
           {stat.map((ticket) => (
             <div key={ticket.id} className="card">
               <div className="stat-title">

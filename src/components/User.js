@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import kobanContext from "../context/KobanContext";
+import AddIcon from "@mui/icons-material/Add";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 export const User = ({
   tickets,
@@ -42,17 +44,29 @@ export const User = ({
     <div className="bucket">
       {ans.map((stat, index) => (
         <div key={index} className="col">
-          <img className="user-img" src={userIcons[users[index].id]} alt="" />
-          <div
-            className="avail"
-            style={{
-              backgroundColor: users[index].available ? "#91C250" : "red",
-            }}
-          ></div>
-          <span style={{ marginLeft: "20px" }}>
-            {users[index].name}
-            <span className="count">{stat.length}</span>
-          </span>
+          <div className="plus-ico">
+            <div>
+              <img
+                className="user-img"
+                src={userIcons[users[index].id]}
+                alt=""
+              />
+              <div
+                className="avail"
+                style={{
+                  backgroundColor: users[index].available ? "#91C250" : "red",
+                }}
+              ></div>
+              <span style={{ marginLeft: "20px", fontSize: "15px" }}>
+                {users[index].name}
+                <span className="count">{stat.length}</span>
+              </span>
+            </div>
+            <div>
+              <AddIcon sx={{ fontSize: "20px" }} />
+              <MoreHorizIcon sx={{ fontSize: "20px" }} />
+            </div>
+          </div>
           {stat.map((ticket) => (
             <div key={ticket.id} className="card">
               <p className="user-id">{ticket.id}</p>

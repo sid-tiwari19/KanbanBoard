@@ -23,6 +23,11 @@
   min-height: 89.9vh;
 }
 
+.plus-ico{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+}
 .count{
   padding:1px 5px;
   margin: 0 15px;
@@ -258,7 +263,9 @@
   .drop-box {
     display: flex;
   }
-  
+  .check-a{
+    display: flex;
+  }
   .drop-ico {
     font-size: 15px;
   }
@@ -269,5 +276,10 @@
   
 }
 
+.dark-mode {
+  background-color: #1a1a1a; /* Dark background color */
+  color: #fff; /* Light text color */
+  /* Add other dark mode styles */
+}
 /* styles.css */
 

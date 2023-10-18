@@ -11,7 +11,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [tickets, setTickets] = useState([]);
   const [users, setUsers] = useState([]);
-
+  const [dark, setDark] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,10 +29,10 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className={`app ${dark ? "dark-mode" : ""}`}>
       <KobanState>
         <div className="nav">
-          <Dropdown />
+          <Dropdown dark={dark} setDark={setDark} />
         </div>
         <div className="display">
           {loading ? (

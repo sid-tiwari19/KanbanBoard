@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import KobanContext from "../context/KobanContext";
+import AddIcon from "@mui/icons-material/Add";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 export const Status = ({
   tickets,
@@ -38,11 +40,19 @@ export const Status = ({
     <div className="bucket">
       {ans.map((stat, index) => (
         <div statIcons={index} className="col">
-          {statIcons[status[index]]}
-          <span>
-            {status[index]}
-            <span className="count">{stat.length}</span>
-          </span>
+          <div className="plus-ico">
+            <div>
+              {statIcons[status[index]]}
+              <span>
+                {status[index]}
+                <span className="count">{stat.length}</span>
+              </span>
+            </div>
+            <div>
+              <AddIcon sx={{ fontSize: "20px" }} />
+              <MoreHorizIcon sx={{ fontSize: "20px" }} />
+            </div>
+          </div>
           {stat.map((ticket) => (
             <div statIcons={ticket.id} className="card">
               <div className="stat-title">
