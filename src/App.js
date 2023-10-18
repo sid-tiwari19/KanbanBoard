@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
+import Dropdown from "./components/DropDown";
+import KobanState from "./context/KobanState";
+import { Bucket } from "./components/Bucket";
 
-function App() {
+const apiUrl = "https://api.quicksell.co/v1/internal/frontend-assignment";
+
+const App = () => {
+  const [loading, setLoading] = useState(true);
+  const [tickets, setTickets] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(apiUrl);
+        setTickets(response.data.tickets);
+        setUsers(response.data.users);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <KobanState>
+        <div className="nav">
+          <Dropdown />
+        </div>
+        <div className="display">
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <div>
+              <Bucket tickets={tickets} users={users} />
+            </div>
+          )}
+        </div>
+      </KobanState>
     </div>
   );
-}
+};
 
 export default App;
